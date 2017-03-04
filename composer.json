@@ -1,0 +1,53 @@
+{
+    "name": "buttress/collecterator",
+    "type": "library",
+    "description": "A collection class powered by generators",
+    "keywords": [
+        "buttress",
+        "collecterator"
+    ],
+    "homepage": "https://github.com/buttress/collecterator",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Korvin Szanto",
+            "email": "korvinszanto@gmail.com",
+            "homepage": "https://github.com/korvinszanto",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "~7.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.7",
+        "phpunit/phpunit" : "~4.0||~5.0",
+        "squizlabs/php_codesniffer": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Buttress\\Collection\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "files": [
+            "tests/generators.php"
+        ],
+        "psr-4": {
+            "Buttress\\Collection\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src",
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
