@@ -9,11 +9,12 @@ use InvalidArgumentException;
 use Iterator;
 use IteratorAggregate;
 use JsonSerializable;
+use Traversable;
 
 /**
  * Generator based collection
  */
-class GeneratorCollection implements CollectionInterface, JsonSerializable, IteratorAggregate
+class GeneratorCollection implements CollectionInterface, JsonSerializable
 {
 
     /** @var Iterator|Generator */
@@ -21,12 +22,30 @@ class GeneratorCollection implements CollectionInterface, JsonSerializable, Iter
 
     public function __construct($data = [])
     {
-        if ($data instanceof IteratorAggregate) {
+        if (is_array($data) || is_scalar($data) || is_null($data) || $data instanceof \stdClass) {
+            $this->generator = new ArrayIterator((array) $data);
+        } elseif ($data instanceof IteratorAggregate) {
             $this->generator = $data->getIterator();
         } elseif ($data instanceof Iterator) {
             $this->generator = $data;
+        } elseif ($data instanceof Traversable) {
+            $this->generator = $this->handleIterable($data);
+        } elseif (function_exists('is_iterable') && is_iterable($data)) {
+            $this->generator = $this->handleIterable($data);
         } else {
-            $this->generator = new ArrayIterator((array)$data);
+            throw new \InvalidArgumentException('Invalid value passed, must be an iterable or a scalar.');
+        }
+    }
+
+    /**
+     * Attempt to traverse a traversable
+     * @param \traversable $item
+     * @return \Generator
+     */
+    protected function handleIterable(iterable $item)
+    {
+        foreach ($item as $key => $value) {
+            yield $key => $value;
         }
     }
 
@@ -671,6 +690,30 @@ class GeneratorCollection implements CollectionInterface, JsonSerializable, Iter
                 yield from $items;
             } elseif ($items) {
                 yield $items;
+            }
+        });
+    }
+
+    /**
+     * Append items onto this collection
+     *
+     * @param mixed $items
+     * @param bool $preserveKeys
+     * @return \Buttress\Collection\CollectionInterface
+     */
+    public function append($items, bool $preserveKeys = true): CollectionInterface
+    {
+        return $this->wrap(function (Iterator $data) use ($items, $preserveKeys) {
+            $lists = [$data, self::make($items)];
+
+            foreach ($lists as $list) {
+                foreach ($list as $key => $item) {
+                    if ($preserveKeys) {
+                        yield $key => $item;
+                    } else {
+                        yield $item;
+                    }
+                }
             }
         });
     }

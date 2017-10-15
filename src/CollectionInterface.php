@@ -1,7 +1,9 @@
 <?php
 namespace Buttress\Collection;
 
-interface CollectionInterface
+use IteratorAggregate;
+
+interface CollectionInterface extends IteratorAggregate
 {
 
     /**
@@ -225,6 +227,15 @@ interface CollectionInterface
      * @return CollectionInterface
      */
     public function merge($items): CollectionInterface;
+
+    /**
+     * Append the passed values to the collection values.
+     *
+     * @param  mixed $items The items to append
+     * @param  bool $preserveKeys Whether to keep keys or throw them away
+     * @return CollectionInterface
+     */
+    public function append($items, bool $preserveKeys = true): CollectionInterface;
 
     /**
      * Create a collection by using this collection for keys and another for its values.
