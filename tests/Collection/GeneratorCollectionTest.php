@@ -13,7 +13,7 @@ use stdClass;
  * Class SupportCollectionTest
  * These tests were copied from the illuminate collection package and modified slightly to test this generator library
  */
-class SupportCollectionTest extends TestCase
+class GeneratorCollectionTest extends TestCase
 {
     public function testFirstReturnsFirstItemInCollection()
     {
@@ -122,7 +122,7 @@ class SupportCollectionTest extends TestCase
 
     public function testToJsonEncodesTheJsonSerializeResult()
     {
-        $c = $this->getMockBuilder(C::class)->setMethods(['jsonSerialize'])->getMock();
+        $c = $this->getMockBuilder(C::class)->onlyMethods(['jsonSerialize'])->getMock();
         $c->expects($this->once())->method('jsonSerialize')->will($this->returnValue(['foo']));
         $results = $c->toJson();
 
@@ -131,7 +131,7 @@ class SupportCollectionTest extends TestCase
 
     public function testCastingToStringJsonEncodesTheToArrayResult()
     {
-        $c = $this->getMockBuilder(C::class)->setMethods(['jsonSerialize'])->getMock();
+        $c = $this->getMockBuilder(C::class)->onlyMethods(['jsonSerialize'])->getMock();
         $c->expects($this->once())->method('jsonSerialize')->will($this->returnValue(['foo']));
 
         $this->assertJsonStringEqualsJsonString(json_encode(['foo']), (string)$c);
@@ -613,7 +613,7 @@ class SupportCollectionTest extends TestCase
                 $this->iterator = $iterator;
             }
 
-            public function getIterator()
+            public function getIterator(): \Iterator
             {
                 return $this->iterator;
             }
@@ -1512,22 +1512,22 @@ class TestArrayAccessImplementation implements ArrayAccess
         $this->arr = $arr;
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->arr[$offset]);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->arr[$offset];
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->arr[$offset] = $value;
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->arr[$offset]);
     }
@@ -1535,7 +1535,7 @@ class TestArrayAccessImplementation implements ArrayAccess
 
 class TestJsonSerializeObject implements JsonSerializable
 {
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return ['foo' => 'bar'];
     }

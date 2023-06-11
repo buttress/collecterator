@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file contains generators we use for testing and for examples
  */
@@ -168,4 +169,3 @@ function stringSum($input)
 
     return array_sum(array_filter($numbers));
 }
-

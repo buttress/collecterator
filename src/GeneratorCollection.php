@@ -16,7 +16,6 @@ use Traversable;
  */
 class GeneratorCollection implements CollectionInterface, JsonSerializable
 {
-
     /** @var Iterator|Generator */
     protected $generator;
 
@@ -135,7 +134,7 @@ class GeneratorCollection implements CollectionInterface, JsonSerializable
             return ($set[(string)$id] + $set[(string)($id + 1)]) / 2;
         }
 
-        return $set[$count / 2];
+        return $set[(int) ($count / 2)];
     }
 
     /**

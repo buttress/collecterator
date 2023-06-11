@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 class GeneratorTest extends TestCase
 {
-
     public function testInfiniteData()
     {
         $values = C::make(fibonacci(1000, 5000, 10000));
@@ -38,6 +37,5 @@ class GeneratorTest extends TestCase
         // Make sure we actually processed 100GB in that time
         $expectedSize = ($bytes - strlen('finished')) / 1000 / 1000 / 1000;
         $this->assertSame(100, $expectedSize);
-
     }
 }

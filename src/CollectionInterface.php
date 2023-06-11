@@ -1,11 +1,11 @@
 <?php
+
 namespace Buttress\Collection;
 
 use IteratorAggregate;
 
 interface CollectionInterface extends IteratorAggregate
 {
-
     /**
      * Get all of the items in the collection.
      *

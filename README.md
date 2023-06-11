@@ -37,7 +37,7 @@ $array = $collection->all();
 
 ## Change log
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+Please see [CHANGELOG](https://github.com/buttress/collecterator/releases) for more information on what has changed recently.
 
 ## Testing
 
