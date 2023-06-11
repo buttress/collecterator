@@ -2,9 +2,7 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
+[![Build Status][ico-actions]][link-actions]
 [![Total Downloads][ico-downloads]][link-downloads]
 
 This library is a fully featured `\Generator` based Collection implementation. 
@@ -64,15 +62,11 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 [ico-version]: https://img.shields.io/packagist/v/buttress/collecterator.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/buttress/collecterator/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/buttress/collecterator.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/buttress/collecterator.svg?style=flat-square
+[ico-actions]: https://img.shields.io/github/actions/workflow/status/buttress/collecterator/test.yml?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/buttress/collecterator.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/buttress/collecterator
-[link-travis]: https://travis-ci.org/buttress/collecterator
-[link-scrutinizer]: https://scrutinizer-ci.com/g/buttress/collecterator/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/buttress/collecterator
+[link-actions]: https://github.com/buttress/collecterator/actions
 [link-downloads]: https://packagist.org/packages/buttress/collecterator
 [link-author]: https://github.com/korvinszanto
 [link-contributors]: ../../contributors
