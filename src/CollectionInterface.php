@@ -74,7 +74,7 @@ interface CollectionInterface extends IteratorAggregate
      * @param  callable|null $callback
      * @return CollectionInterface
      */
-    public function filter(callable $callback = null): CollectionInterface;
+    public function filter(?callable $callback = null): CollectionInterface;
 
     /**
      * Apply the callback if the value is truthy.
@@ -109,7 +109,7 @@ interface CollectionInterface extends IteratorAggregate
      * @param  mixed $default
      * @return mixed
      */
-    public function first(callable $callback = null, $default = null);
+    public function first(?callable $callback = null, $default = null);
 
     /**
      * Get a flattened array of the items in the collection.
@@ -175,7 +175,7 @@ interface CollectionInterface extends IteratorAggregate
      * @param  mixed $default
      * @return mixed
      */
-    public function last(callable $callback = null, $default = null);
+    public function last(?callable $callback = null, $default = null);
 
     /**
      * Get the values of a given key.

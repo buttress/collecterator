@@ -263,7 +263,7 @@ class GeneratorCollection implements CollectionInterface, JsonSerializable
      * @param  callable|null $callback
      * @return CollectionInterface
      */
-    public function filter(callable $callback = null): CollectionInterface
+    public function filter(?callable $callback = null): CollectionInterface
     {
         if (!$callback) {
             $callback = function ($item) {
@@ -346,7 +346,7 @@ class GeneratorCollection implements CollectionInterface, JsonSerializable
      * @param  mixed $default
      * @return mixed
      */
-    public function first(callable $callback = null, $default = null)
+    public function first(?callable $callback = null, $default = null)
     {
         foreach ($this->generator as $item) {
             if (!$callback || $callback($item)) {
@@ -552,7 +552,7 @@ class GeneratorCollection implements CollectionInterface, JsonSerializable
      * @param  mixed $defualt
      * @return mixed
      */
-    public function last(callable $callback = null, $default = null)
+    public function last(?callable $callback = null, $default = null)
     {
         $collection = $callback ? $this->filter($callback) : $this;
 
